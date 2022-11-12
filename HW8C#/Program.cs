@@ -23,6 +23,7 @@ void  GetArray2sort (int[,] array){
 //Рекомендовано решить(задача с семинара)
 //Отсортировать нечетные столбцы(смотрите по индексам) массива по возрастанию. Вывести массив изначальный и массив с отсортированными нечетными столбцами
 
+/*
 int[,] ArrayDop = GetArray2 (3, 4, 0, 9);
 PrintArray2(ArrayDop);
 Console.WriteLine();
@@ -42,6 +43,101 @@ void  GetArray2sort (int[,] array){
         }
     }    
 }
+*/
+//Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+/*
+Console.WriteLine("Введите количество строк в массиве:");
+int rows = int.Parse(Console.ReadLine()!);
+
+Console.WriteLine("Введите количество столбцов в массиве:");
+int columns = int.Parse(Console.ReadLine()!);
+
+if (rows == columns){
+    Console.WriteLine("Массив получается не прямоугольным");
+}
+else{
+    int[,] Array56 = GetArray2 (rows, columns, 0, 9);
+    PrintArray2(Array56);
+    Console.WriteLine($"Строка с наименьшей суммой элементов имеет индекс {RowMinSum(Array56)}");
+    
+    int RowMinSum ( int [,] array){
+        int Row = 0;
+        int minsum = 0;
+        for (int j = 0; j < array.GetLength(1); j++){
+        minsum += array[0,j];  
+        }
+        Console.WriteLine($"{minsum}"); //посмотреть сумму первой строки(индекс 0)
+        for (int i = 1; i < array.GetLength(0); i++){
+            int sum = 0;
+            for (int j = 0; j < array.GetLength(1); j++){ 
+                sum += array[i,j]; 
+            }
+            Console.WriteLine($"{sum}"); //посмотреть суммы строк по порядку со второй строки (индекс 1)
+            if (minsum > sum){
+                minsum = sum;
+                Row = i;
+            }
+        }
+    return Row;
+
+    }
+
+
+}
+*/
+//Задача 56/Альтернативное решение. Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов. 
+
+
+Console.WriteLine("Введите количество строк в массиве:");
+int rows = int.Parse(Console.ReadLine()!);
+
+Console.WriteLine("Введите количество столбцов в массиве:");
+int columns = int.Parse(Console.ReadLine()!);
+
+if (rows == columns){
+    Console.WriteLine("Массив получается не прямоугольным");
+}
+else{
+    int[,] Array56 = GetArray2 (rows, columns, 0, 1);
+    PrintArray2(Array56);
+   
+    int [] ArrayFromSumm = ArraySum (Array56);
+    Console.WriteLine(String.Join(",", ArrayFromSumm));
+    
+
+    int Min = ArrayFromSumm[0];
+    int MinInd = 0;
+    for(int i = 0; i < ArrayFromSumm.Length; i++){
+            if (ArrayFromSumm[i] < Min){
+                Min = ArrayFromSumm[i];
+                MinInd = i;
+            }
+             
+    }
+    Console.WriteLine($"Строка с наименьшей суммой элементов имеет индекс {MinInd}");
+    for(int i = 0; i < ArrayFromSumm.Length; i++){
+            if (ArrayFromSumm[i] == Min && i != MinInd){
+                int MinInd2 = i;
+                Console.WriteLine($"Есть равная по сумме ей строка с наименьшей суммой элементов с индексом {MinInd2}");
+            }
+             
+    }
+
+    // выведение сумм строк в виде одномерного массива
+    int[] ArraySum ( int [,] array){
+        int[] result = new int[array.GetLength(0)];
+        for (int i = 0; i < array.GetLength(0); i++){
+            int sum = 0;
+            for (int j = 0; j < array.GetLength(1); j++){
+            sum = sum + array[i, j];
+            }
+            result [i] = sum;
+        }
+    return result;    
+    }
+}
+
+
 
 //Создание двухмерного массива
 int [,] GetArray2 (int m, int n, int minel, int maxel){
@@ -58,10 +154,10 @@ return result;
 
 void PrintArray2(int[,] array){
     for (int i = 0; i < array.GetLength(0); i++){
-         for (int j = 0; j < array.GetLength(1); j++){
+        for (int j = 0; j < array.GetLength(1); j++){
             Console.Write($"{array[i,j]} ");
-         }
-         Console.WriteLine();
+        }
+        Console.WriteLine();
     }
 }
 
