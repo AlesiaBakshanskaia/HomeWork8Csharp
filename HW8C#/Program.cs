@@ -138,7 +138,7 @@ else{
 }
 
 */
-
+/*
 //Создание двухмерного массива
 int [,] GetArray2 (int m, int n, int minel, int maxel){
     int[,] result = new int[m,n];
@@ -161,13 +161,12 @@ void PrintArray2(int[,] array){
     }
 }
 
-
+*/
 
 //60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 //Массив размером 2 x 2 x 2
-
-int[,,]Array60 = GetArray3(4, 4, 4, 10, 99);
-   
+/*
+int[,,]Array60 = GetArray3(4, 4, 4, 10, 99); 
 PrintArray3(Array60);
 
 
@@ -217,48 +216,57 @@ void PrintArray3(int[,,] array){
          Console.WriteLine();
     }
 }
-
+*/
 //Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 
-/*
-int[,]Array62 = GetArraySpir(4,4);
+
+int[,]Array62 = GetArraySpir(10,10);
 PrintArray2(Array62);
 //Создание двухмерного массива
 int [,] GetArraySpir(int row, int column){
     int[,] resArray = new int [row, column];
+    int amountcycles;
+    if ( row % 2 == 0){
+         amountcycles = row / 2;
+    }
+    else {
+         amountcycles = 1 + row / 2;
+    }
+
     int count = 1;
-    for (int j = 0; j < resArray.GetLength(1); j++){
-        int i = 0;
-        resArray[i,j] =  count;
-        count += 1;
+    for (int cycle = 0; cycle < amountcycles; cycle++){
+        for (int j = cycle; j < resArray.GetLength(1)-cycle; j++){
+            int i = cycle;
+            resArray[i,j] =  count;
+            count += 1;
+        }
+        for (int i = cycle + 1; i < resArray.GetLength(0) - cycle; i++){
+            int j = resArray.GetLength(1)-1-cycle;
+            resArray[i,j] =  count;
+            count += 1;
+        }
+        for (int j = resArray.GetLength(1)-2-cycle; j >= cycle; j--){
+            int i = resArray.GetLength(0)-1-cycle;
+            resArray[i,j] =  count;
+            count += 1;
+        }
+        for (int i = resArray.GetLength(0)-2-cycle; i > cycle; i--){
+            int j = cycle;
+            resArray[i,j] =  count;
+            count += 1;
+        }
+
     }
-    for (int i = 1; i < resArray.GetLength(0); i++){
-        int j = resArray.GetLength(1)-1;
-        resArray[i,j] =  count;
-        count += 1;
-    }
-    for (int j = resArray.GetLength(1)-2; j >= 0; j--){
-        int i = resArray.GetLength(0)-1;
-        resArray[i,j] =  count;
-        count += 1;
-    }
-    for (int i = resArray.GetLength(0)-2; i > 0; i--){
-        int j = 0;
-        resArray[i,j] =  count;
-        count += 1;
-    }
-    
     
 return resArray;
 }
 
-// Печать двумерного массива
+// Печать двумерного массива  в виде чисел с нулями перед значением
 void PrintArray2(int[,] array){
     for (int i = 0; i < array.GetLength(0); i++){
          for (int j = 0; j < array.GetLength(1); j++){
-            Console.Write($"{array[i,j]} ");
+            Console.Write($"{array[i,j]:D3} ");
          }
          Console.WriteLine();
     }
 }
-*/
