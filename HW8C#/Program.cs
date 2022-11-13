@@ -86,7 +86,7 @@ else{
 }
 */
 //Задача 56/Альтернативное решение. Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов. 
-
+/*
 
 Console.WriteLine("Введите количество строк в массиве:");
 int rows = int.Parse(Console.ReadLine()!);
@@ -137,7 +137,7 @@ else{
     }
 }
 
-
+*/
 
 //Создание двухмерного массива
 int [,] GetArray2 (int m, int n, int minel, int maxel){
@@ -165,47 +165,59 @@ void PrintArray2(int[,] array){
 
 //60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 //Массив размером 2 x 2 x 2
-/*
-int[,,]Array60 = GetArray3(2, 2, 2, 10, 20);
-foreach (int element in Array60){
-    if (element == result[i,j,k])
 
-    
+int[,,]Array60 = GetArray3(4, 4, 4, 10, 99);
+   
 PrintArray3(Array60);
 
 
 //Создание трехмерного массива
 int [,,] GetArray3 (int m, int n, int o, int minel, int maxel){
     int[,,] result = new int[m,n,o];
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < n; j++){
-            for (int k = 0; k < o; k++){
-                result[i,j,k] = new Random().Next(minel, maxel+1);
-                
-                }
+    for (int i = 0; i < result.GetLength(0); i++){
+        for (int j = 0; j < result.GetLength(1); j++){
+            int k = 0;
+            while (k < result.GetLength(2)){
+                int tempElem = new Random().Next(minel, maxel+1);
+                if (CheckElement(result, tempElem)) continue;
+                result[i,j,k] = tempElem;
+                k++;
+            }
 
-            }    
-        }
+        }    
+    }
 return result;
 }
 
-/*foreach (int element in result){
-                    if (element == result[i,j,k]){
-                        break;
-                    }
-*/
-/*
+// Проверка на наличие нового значения в массиве
+
+bool CheckElement (int [,,] array, int elem){
+    for (int i = 0; i < array.GetLength(0); i++){
+        for (int j = 0; j < array.GetLength(1); j++){
+            for (int k = 0; k < array.GetLength(2); k++){
+                if (array[i,j,k] == elem){
+                    return true;
+                }
+            }    
+        }        
+    }
+    return false;
+}
+
+
 // Печать трехмерного массива
 void PrintArray3(int[,,] array){
-    for (int k = 0; k < array.GetLength(2); k++){
-         for (int i = 0; i < array.GetLength(0); i++){
-            for (int j = 0; j < array.GetLength(1); j++)
+    for (int i = 0; i < array.GetLength(0); i++){
+         for (int j = 0; j < array.GetLength(1); j++){
+            for (int k = 0; k < array.GetLength(2); k++){
                 Console.Write($"{array[i,j,k]} {(i,j,k)} ");
-                Console.WriteLine(); 
+            }
+            Console.WriteLine(); 
          }
+         Console.WriteLine();
     }
 }
-*/
+
 //Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 
 /*
