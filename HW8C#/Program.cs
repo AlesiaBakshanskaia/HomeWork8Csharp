@@ -138,7 +138,46 @@ else{
 }
 
 */
-/*
+
+//Задача 58: Задайте две квадратные матрицы. Напишите программу, которая будет находить произведение двух матриц.
+
+Console.WriteLine("Введите количество строк в массиве 1:");
+int rows1 = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Введите количество столбцов в массиве 1:");
+int columns1 = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Введите количество строк в массиве 2:");
+int rows2 = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Введите количество столбцов в массиве 2:");
+int columns2 = int.Parse(Console.ReadLine()!);
+
+if (columns1 != rows2){
+    Console.WriteLine("Такие матрицы нельзя умножить");
+    return;
+}
+
+int[,] Array581 = GetArray2 (rows1, columns1, 0, 9);
+PrintArray2(Array581);
+Console.WriteLine();
+int[,] Array582 = GetArray2 (rows2, columns2, 0, 9);
+PrintArray2(Array582);
+Console.WriteLine();
+int[,] ArrayMult58 = MultMatr (Array581, Array582);
+PrintArray2(ArrayMult58);
+
+//метод получения нового массива путем умножения матриц
+int[,] MultMatr (int[,] array1, int[,] array2){
+    int[,] res = new int [array1.GetLength(0), array2.GetLength(1)];
+    for (int i = 0; i < array1.GetLength(0); i++){
+        for (int j = 0; j < array2.GetLength(1); j++){
+            for (int k = 0; k < array1.GetLength(1); k++){
+                res [i,j] += array1[i,k] * array2[k,j];
+            } 
+        }
+    } 
+return res;      
+}
+
+// 2 следующих метода для всех задач выше, задачи 60 и 62 имеют свои методы печати и заполнения
 //Создание двухмерного массива
 int [,] GetArray2 (int m, int n, int minel, int maxel){
     int[,] result = new int[m,n];
@@ -161,7 +200,14 @@ void PrintArray2(int[,] array){
     }
 }
 
-*/
+
+
+
+
+
+
+
+
 
 //60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 //Массив размером 2 x 2 x 2
@@ -217,12 +263,23 @@ void PrintArray3(int[,,] array){
     }
 }
 */
+
+
+
+
+
+
+
+
+
 //Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 
-
+/*
 int[,]Array62 = GetArraySpir(10,10);
 PrintArray2(Array62);
-//Создание двухмерного массива
+
+
+//Создание двухмерного массива по спирали
 int [,] GetArraySpir(int row, int column){
     int[,] resArray = new int [row, column];
     int amountcycles;
@@ -270,3 +327,4 @@ void PrintArray2(int[,] array){
          Console.WriteLine();
     }
 }
+*/
