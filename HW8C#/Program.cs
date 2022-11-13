@@ -154,13 +154,13 @@ if (columns1 != rows2){
     Console.WriteLine("Такие матрицы нельзя умножить");
     return;
 }
-
+Console.WriteLine("Первая матрица");
 int[,] Array581 = GetArray2 (rows1, columns1, 0, 9);
 PrintArray2(Array581);
-Console.WriteLine();
+Console.WriteLine("Вторая матрица");
 int[,] Array582 = GetArray2 (rows2, columns2, 0, 9);
 PrintArray2(Array582);
-Console.WriteLine();
+Console.WriteLine("Произведение матриц");
 int[,] ArrayMult58 = MultMatr (Array581, Array582);
 PrintArray2(ArrayMult58);
 
